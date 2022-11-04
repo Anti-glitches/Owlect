@@ -1,13 +1,8 @@
 <template>
     <div>
         <!-- Topic Hero -->
-<<<<<<< Updated upstream
-        <div class="flex bg-green-100 p-12 px-36 gap-10 flex-col items-start">
-            <button>
-=======
         <div class="flex bg-green-100 p-12 gap-10 flex-col items-start">
             <button @click="$router.go(-1)">
->>>>>>> Stashed changes
                 <i class="fa-solid fa-chevron-left"></i> Back to Course
             </button>
             <div class="flex gap-12">
@@ -40,35 +35,8 @@
         </div>
 
         <!-- Mid content -->
-<<<<<<< Updated upstream
-        <div class="p-12 px-36 flex flex-col gap-6">
-            <h1 class="text-2xl">Human's Nose</h1>
-            <div class="flex gap-10">
-                <div
-                    class="
-                        border
-                        bg-blue-200
-                        flex flex-col
-                        gap-3
-                        flex-shrink-0
-                        border-black
-                        w-96
-                        h-60
-                    "
-                ></div>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                    Explicabo corrupti, molestiae impedit tempora expedita
-                    deleniti eveniet eum, soluta consequuntur commodi ab quae
-                    eos fugiat autem? Fuga explicabo fugiat ratione natus
-                    voluptate sunt voluptatibus iure porro iste? Ullam aliquid
-                    repudiandae deserunt.
-                </p>
-            </div>
-=======
         <div v-html="content" class="p-12 flex flex-col gap-6">
 
->>>>>>> Stashed changes
         </div>
 
         <!-- Project Section -->
@@ -158,13 +126,6 @@
 </template>
 
 <script>
-<<<<<<< Updated upstream
-import { RouterLink } from "vue-router";
-export default {
-    data() {
-        return {
-            topic: [],
-=======
 import { RouterLink } from 'vue-router';
 import { parse as marked } from 'marked'
 export default{
@@ -174,7 +135,6 @@ export default{
             content: '',
             instructions: '',
             video: ''
->>>>>>> Stashed changes
         };
     },
     mounted() {
@@ -194,24 +154,6 @@ export default{
         }
          `;
         const getData = async () => {
-<<<<<<< Updated upstream
-            const res = await fetch(
-                "https://graphql.contentful.com/content/v1/spaces/h7anfqe067rx/",
-                {
-                    method: "POST",
-                    headers: {
-                        Authorization:
-                            "Bearer tADicLUUI2k4He69iAlp8jrF-n-4LJrf60S3UJr_uJs",
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({ query }),
-                }
-            )
-                .then((res) => res.json())
-                .then((data) => {
-                    this.topic = data.data.topicsCollection.items[0];
-                });
-=======
             const res = await fetch("https://graphql.contentful.com/content/v1/spaces/h7anfqe067rx/", {
                 method: "POST",
                 headers: {
@@ -226,7 +168,6 @@ export default{
                 this.content = marked(data.data.topicsCollection.items[0].content);
                 this.instructions = marked(data.data.topicsCollection.items[0].projectInstructions)
             });
->>>>>>> Stashed changes
         };
         return getData();
     },

@@ -2,19 +2,11 @@
     <div>
         <!-- {{topics}} -->
         <!-- Courses Hero Section -->
-<<<<<<< Updated upstream
-        <div class="flex bg-green-100 p-12 px-36 gap-10 flex-col items-start">
-            <router-link to="/courses"
-                ><i class="fa-solid fa-chevron-left"></i> Back to
-                Courses</router-link
-            >
-=======
         <div class="flex bg-green-100 p-12 gap-10 flex-col items-start">
             <button @click="$router.go(-1)">
                 <i class="fa-solid fa-chevron-left"></i> 
                 Back to Courses
             </button>
->>>>>>> Stashed changes
 
             <div class="flex gap-12">
                 <div class="flex flex-col gap-5">
