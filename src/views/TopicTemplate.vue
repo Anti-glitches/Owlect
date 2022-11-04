@@ -173,7 +173,6 @@ export default{
         };
     },
     mounted() {
-        console.log(this.$route.params);
         const query = `{
 		    topicsCollection(where: {slug: "${this.$route.params.topicName}"}){
 		        items{

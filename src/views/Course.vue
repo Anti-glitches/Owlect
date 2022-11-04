@@ -107,7 +107,6 @@ export default{
         };
     },
     mounted() {
-        console.log(this.$route.params);
         const query = `{
             subjectsCollection(where: {nameSlug: "${this.$route.params.courseName}"}){
 				items {
