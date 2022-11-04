@@ -2,8 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import DashboardView from "../views/DashboardView.vue";
 import CoursesView from "../views/CoursesView.vue";
 import HistoryView from "../views/HistoryView.vue";
-import HumanAnatomy from "../components/Course.vue";
-import BasicHumanAnatomy from "../components/TopicTemplate.vue";
+import HumanAnatomy from "../views/Course.vue";
 
 const routes = [
     {
@@ -19,7 +18,7 @@ const routes = [
     {
         path: "/courses/human-anatomy",
         name: "courseName",
-        component: HumanAnatomy,
+        component: HumanAnatomy(),
     },
     {
         path: "/courses/human-anatomy/basic-human-anatomy",
