@@ -2,11 +2,19 @@
     <div>
         <!-- {{topics}} -->
         <!-- Courses Hero Section -->
+<<<<<<< Updated upstream
         <div class="flex bg-green-100 p-12 px-36 gap-10 flex-col items-start">
             <router-link to="/courses"
                 ><i class="fa-solid fa-chevron-left"></i> Back to
                 Courses</router-link
             >
+=======
+        <div class="flex bg-green-100 p-12 gap-10 flex-col items-start">
+            <button @click="$router.go(-1)">
+                <i class="fa-solid fa-chevron-left"></i> 
+                Back to Courses
+            </button>
+>>>>>>> Stashed changes
 
             <div class="flex gap-12">
                 <div class="flex flex-col gap-5">
@@ -34,8 +42,8 @@
                     <img :src="image" class="w-36" />
                     <div class="flex gap-4">
                         <div>
-                            <h3>20+</h3>
-                            <p>Available Tutors</p>
+                            <h3>{{subject.registered}}</h3>
+                            <p>Registered</p>
                         </div>
                         <div>
                             <h3>20+</h3>
@@ -75,26 +83,27 @@
                 </p>
                 <!-- Courses Option in one section -->
                 <div class="grid grid-cols-3 gap-4">
-                    <router-link
-                        v-for="topic in topics"
-                        :to="'/courses/' + subject.nameSlug + '/' + topic.slug"
-                        :key="topic"
-                    >
-                        <div
-                            class="bg-red-500"
+                    <template v-for="topic in topics">
+                        <router-link
                             v-if="topic.contentLevel == content.Level"
+                            :to="'/courses/' + subject.nameSlug + '/' + topic.slug"
                         >
-                            <div class="h-36 flex justify-center items-center">
-                                <i class="fa-regular fa-image"></i>
+                            <div
+                                class="bg-red-500"
+                                
+                            >
+                                <div class="h-36 flex justify-center items-center">
+                                    <img :src="topic.thumbnail.url" class="w-36" />
+                                </div>
+                                <div class="p-5 py-3 bg-yellow-100">
+                                    <h4 class="text-lg">{{ topic.name }}</h4>
+                                    <p class="text-sm">
+                                        {{ topic.shortDescription }}
+                                    </p>
+                                </div>
                             </div>
-                            <div class="p-5 py-3 bg-yellow-100">
-                                <h4 class="text-lg">{{ topic.name }}</h4>
-                                <p class="text-sm">
-                                    {{ topic.shortDescription }}
-                                </p>
-                            </div>
-                        </div>
-                    </router-link>
+                        </router-link>
+                    </template>
                 </div>
             </div>
         </div>
@@ -114,7 +123,6 @@ export default {
         };
     },
     mounted() {
-        console.log(this.$route.params);
         const query = `{
             subjectsCollection(where: {nameSlug: "${this.$route.params.courseName}"}){
 				items {
@@ -125,6 +133,7 @@ export default {
                             url
                         }
                         contents
+                        registered
 				}
 		    }
 		    topicsCollection(where: {subject: "${this.$route.params.courseName}"}){
@@ -133,6 +142,9 @@ export default {
                     shortDescription
 			        contentLevel
                     slug
+                    thumbnail{
+                        url
+                    }
 		        }
 	        }
         }

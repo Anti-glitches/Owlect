@@ -1,8 +1,13 @@
 <template>
     <div>
         <!-- Topic Hero -->
+<<<<<<< Updated upstream
         <div class="flex bg-green-100 p-12 px-36 gap-10 flex-col items-start">
             <button>
+=======
+        <div class="flex bg-green-100 p-12 gap-10 flex-col items-start">
+            <button @click="$router.go(-1)">
+>>>>>>> Stashed changes
                 <i class="fa-solid fa-chevron-left"></i> Back to Course
             </button>
             <div class="flex gap-12">
@@ -24,7 +29,8 @@
                         h-60
                     "
                 >
-                    <div class="w-full h-full">video here</div>
+                    <video :src="video" type="video/mp4">
+                    </video>
                     <div class="flex justify-between bg-white p-4">
                         <p>What’s Human Anatomy?</p>
                         <span><i class="fa-solid fa-play"></i></span>
@@ -34,6 +40,7 @@
         </div>
 
         <!-- Mid content -->
+<<<<<<< Updated upstream
         <div class="p-12 px-36 flex flex-col gap-6">
             <h1 class="text-2xl">Human's Nose</h1>
             <div class="flex gap-10">
@@ -58,6 +65,10 @@
                     repudiandae deserunt.
                 </p>
             </div>
+=======
+        <div v-html="content" class="p-12 flex flex-col gap-6">
+
+>>>>>>> Stashed changes
         </div>
 
         <!-- Project Section -->
@@ -69,31 +80,13 @@
             </p>
 
             <p class="bg-yellow-300 p-6 text-xl text-center rounded">
-                "Things that happen in a human’s nose and its anatomy"
+                {{topic.projectStatement}}
             </p>
 
             <div class="flex gap-12">
                 <div class="flex flex-col gap-4">
                     <h2 class="text-2xl">Instructions</h2>
-                    <p>
-                        Lörem ipsum framtidsfullmakt. Delig mms:a om räsk. Plav
-                        bevis egor övis. Timåpär riviligen. Värdgraviditet
-                        metataggar med por därför att fav. Debel öv poddsändning
-                        branded content. Parask pararen för att kos. Jimyre
-                        mutina. Varat sor. sjsanxaizlao aiosunoais aoiyxbayxna
-                        ainxaoixnas xanyxax aybuois xansb
-                    </p>
-                    <p>In your explanation, you need to mention:</p>
-                    <ul>
-                        <li class="list-outside">XXXX</li>
-                        <li class="list-outside">XXXX</li>
-                        <li class="list-outside">XXXX</li>
-                    </ul>
-                    <p>
-                        Debel öv poddsändning branded content. Parask pararen
-                        för att kos. Jimyre mutina. Varat sor. sjsanxaizlao
-                        aiosunoais aoiyxbayxna ainxaoixnas xanyxax aybuois xansb
-                    </p>
+                    <div v-html="instructions"></div>
                 </div>
                 <div
                     class="
@@ -165,11 +158,23 @@
 </template>
 
 <script>
+<<<<<<< Updated upstream
 import { RouterLink } from "vue-router";
 export default {
     data() {
         return {
             topic: [],
+=======
+import { RouterLink } from 'vue-router';
+import { parse as marked } from 'marked'
+export default{
+    data() {
+        return {
+            topic: [],
+            content: '',
+            instructions: '',
+            video: ''
+>>>>>>> Stashed changes
         };
     },
     mounted() {
@@ -178,11 +183,18 @@ export default {
 		        items{
 			        name
                     description
+                    content
+                    projectStatement
+                    projectInstructions
+                    video{
+                        url
+                    }
 		        }
 	        }
         }
          `;
         const getData = async () => {
+<<<<<<< Updated upstream
             const res = await fetch(
                 "https://graphql.contentful.com/content/v1/spaces/h7anfqe067rx/",
                 {
@@ -199,6 +211,22 @@ export default {
                 .then((data) => {
                     this.topic = data.data.topicsCollection.items[0];
                 });
+=======
+            const res = await fetch("https://graphql.contentful.com/content/v1/spaces/h7anfqe067rx/", {
+                method: "POST",
+                headers: {
+                    Authorization: "Bearer tADicLUUI2k4He69iAlp8jrF-n-4LJrf60S3UJr_uJs",
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ query }),
+            }).then(res => res.json()).then(data => {
+                this.topic = data.data.topicsCollection.items[0];
+                this.video = data.data.topicsCollection.items[0].video.url;
+                console.log(this.video)
+                this.content = marked(data.data.topicsCollection.items[0].content);
+                this.instructions = marked(data.data.topicsCollection.items[0].projectInstructions)
+            });
+>>>>>>> Stashed changes
         };
         return getData();
     },
