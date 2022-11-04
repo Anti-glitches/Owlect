@@ -75,7 +75,7 @@
                     "
                     >{{ index + 1 }}</span
                 >
-                <h3 class="text-2xl">Introduction</h3>
+                <h3 class="text-2xl">intro</h3>
                 <p>
                     Lorem ipsum, dolor sit amet consectetur adipisicing elit.
                     Labore laboriosam veniam iste tenetur et dolorum, nulla,
