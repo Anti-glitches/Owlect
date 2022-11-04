@@ -17,9 +17,9 @@ const routes = [
         component: CoursesView,
     },
     {
-        path: "/courses/:courseName",
+        path: "/courses/human-anatomy",
         name: "courseName",
-        component: HumanAnatomy(),
+        component: HumanAnatomy,
     },
     {
         path: "/courses/human-anatomy/basic-human-anatomy",
