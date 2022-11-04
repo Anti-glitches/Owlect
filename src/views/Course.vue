@@ -1,6 +1,5 @@
 <template>
     <div>
-        {{topics}}
         <!-- Courses Hero Section -->
         <div class="flex bg-green-100 p-12 gap-10 flex-col items-start">
             <button>

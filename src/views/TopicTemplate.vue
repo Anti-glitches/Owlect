@@ -7,21 +7,9 @@
             </button>
             <div class="flex gap-12">
                 <div class="flex flex-col gap-5">
-                    <h1 class="text-3xl">Human Anatomy</h1>
+                    <h1 class="text-3xl">{{topic.name}}</h1>
                     <p>
-                        
-                        Lörem ipsum framtidsfullmakt. Delig mms:a om räsk. Plav
-                        bevis egor övis. Timåpär riviligen. Värdgraviditet
-                        metataggar med por därför att fav. Debel öv poddsändning
-                        branded content. Parask pararen för att kos. Jimyre
-                        mutina. Varat sor.
-                    </p>
-                    <p>
-                        Lörem ipsum framtidsfullmakt. Delig mms:a om räsk. Plav
-                        bevis egor övis. Timåpär riviligen. Värdgraviditet
-                        metataggar med por därför att fav. Debel öv poddsändning
-                        branded content. Parask pararen för att kos. Jimyre
-                        mutina. Varat sor.
+                        {{topic.description}}
                     </p>
                 </div>
                 <div
@@ -177,7 +165,40 @@
 </template>
 
 <script>
-export default{}
+import { RouterLink } from 'vue-router';
+export default{
+    data() {
+        return {
+            topic: []
+        };
+    },
+    mounted() {
+        console.log(this.$route.params);
+        const query = `{
+		    topicsCollection(where: {slug: "${this.$route.params.topicName}"}){
+		        items{
+			        name
+                    description
+		        }
+	        }
+        }
+         `;
+        const getData = async () => {
+            const res = await fetch("https://graphql.contentful.com/content/v1/spaces/h7anfqe067rx/", {
+                method: "POST",
+                headers: {
+                    Authorization: "Bearer tADicLUUI2k4He69iAlp8jrF-n-4LJrf60S3UJr_uJs",
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ query }),
+            }).then(res => res.json()).then(data => {
+                this.topic = data.data.topicsCollection.items[0];
+            });
+        };
+        return getData();
+    },
+    components: { RouterLink }
+}
 </script>
 
 <style>
