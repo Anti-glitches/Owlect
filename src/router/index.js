@@ -21,11 +21,6 @@ const routes = [
         name: "courseName",
         component: CourseTemplate,
     },
-    // {
-    //     path: "/courses/human-anatomy/basic-human-anatomy",
-    //     name: "basic-human-anatomy",
-    //     component: BasicHumanAnatomy,
-    // },
     {
         path: "/history",
         name: "history",
