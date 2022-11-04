@@ -1,7 +1,7 @@
 <template>
-    <div>
+    <div class="px-36">
         <!-- Streak Hero -->
-        <div class="p-12 grid grid-cols-8 items-center">
+        <div class="p-12 px-0 grid grid-cols-8 items-center">
             <div class="pr-12 border-r-2 col-span-5 flex flex-col gap-3">
                 <h1 class="text-xl font-bold">Hello, Max!</h1>
                 <p>Finish, at least, 2 projects a week to start a streak!</p>
@@ -30,9 +30,9 @@
                 </div>
             </div>
         </div>
-        <div class="p-12 pt-0 flex flex-col gap-4" v-for="i in 2" :key="i">
+        <div class="p-12 px-0 pt-0 flex flex-col gap-4" v-for="i in 2" :key="i">
             <h2 class="text-xl font-medium">Continue your Project</h2>
-            <div class="grid grid-cols-4 gap-6">
+            <div class="grid grid-cols-3 gap-6">
                 <div
                     class="border p-4 rounded w-fit flex flex-col gap-1"
                     v-for="i in 4"

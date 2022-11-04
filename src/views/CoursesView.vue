@@ -1,5 +1,5 @@
 <template>
-    <div class="p-12">
+    <div class="p-12 px-36">
         <div class="flex flex-col gap-2 mb-12">
             <h1 class="text-2xl">Frequently visited courses</h1>
             <p>Courses you’ve visited recently</p>

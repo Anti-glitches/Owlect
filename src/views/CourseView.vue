@@ -2,7 +2,7 @@
     <div>
         <!-- {{topics}} -->
         <!-- Courses Hero Section -->
-        <div class="flex bg-green-100 p-12 gap-10 flex-col items-start">
+        <div class="flex bg-green-100 p-12 px-36 gap-10 flex-col items-start">
             <router-link to="/courses"
                 ><i class="fa-solid fa-chevron-left"></i> Back to
                 Courses</router-link
@@ -49,7 +49,7 @@
         <!-- Courses List -->
         <div class="flex flex-col gap-12 my-12">
             <div
-                class="p-28 py-0 flex flex-col gap-3 relative"
+                class="py-0 px-52 flex flex-col gap-3 relative"
                 v-for="content in contentLevel"
                 :key="content"
             >
@@ -57,7 +57,7 @@
                     class="
                         absolute
                         top-2
-                        left-12
+                        left-36
                         text-xl
                         bg-orange-200
                         w-10

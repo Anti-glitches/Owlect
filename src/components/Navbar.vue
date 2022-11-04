@@ -1,5 +1,5 @@
 <template>
-    <div class="flex justify-between p-5 px-12">
+    <div class="flex justify-between p-5 px-36">
         <div class="flex gap-10">
             <div class="flex gap-2">
                 <img src="/logo.png" alt="logo" class="w-10" />

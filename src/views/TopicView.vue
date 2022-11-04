@@ -1,15 +1,15 @@
 <template>
     <div>
         <!-- Topic Hero -->
-        <div class="flex bg-green-100 p-12 gap-10 flex-col items-start">
+        <div class="flex bg-green-100 p-12 px-36 gap-10 flex-col items-start">
             <button>
                 <i class="fa-solid fa-chevron-left"></i> Back to Course
             </button>
             <div class="flex gap-12">
                 <div class="flex flex-col gap-5">
-                    <h1 class="text-3xl">{{topic.name}}</h1>
+                    <h1 class="text-3xl">{{ topic.name }}</h1>
                     <p>
-                        {{topic.description}}
+                        {{ topic.description }}
                     </p>
                 </div>
                 <div
@@ -34,7 +34,7 @@
         </div>
 
         <!-- Mid content -->
-        <div class="p-12 flex flex-col gap-6">
+        <div class="p-12 px-36 flex flex-col gap-6">
             <h1 class="text-2xl">Human's Nose</h1>
             <div class="flex gap-10">
                 <div
@@ -61,7 +61,7 @@
         </div>
 
         <!-- Project Section -->
-        <div class="p-12 flex flex-col gap-6">
+        <div class="p-12 px-36 flex flex-col gap-6">
             <h1 class="text-3xl">Project Time!</h1>
             <p>
                 Record your explanation about the following topic, and good
@@ -111,8 +111,8 @@
                 </div>
             </div>
 
-            <div class="grid grid-cols-3 gap-8">
-                <div class="p-6 border shadow flex flex-col gap-3">
+            <div class="grid grid-cols-5 gap-8">
+                <div class="p-6 border shadow flex flex-col col-span-2 gap-3">
                     <h1 class="text-2xl font-bold">Feedback</h1>
                     <div>
                         <p>Understanding</p>
@@ -132,7 +132,7 @@
                         <p class="p-2">-</p>
                     </div>
                 </div>
-                <div class="flex flex-col gap-6 col-span-2">
+                <div class="flex flex-col gap-6 col-span-3">
                     <div
                         class="
                             border-2 border-dashed border-indigo-400
@@ -165,11 +165,11 @@
 </template>
 
 <script>
-import { RouterLink } from 'vue-router';
-export default{
+import { RouterLink } from "vue-router";
+export default {
     data() {
         return {
-            topic: []
+            topic: [],
         };
     },
     mounted() {
@@ -183,21 +183,27 @@ export default{
         }
          `;
         const getData = async () => {
-            const res = await fetch("https://graphql.contentful.com/content/v1/spaces/h7anfqe067rx/", {
-                method: "POST",
-                headers: {
-                    Authorization: "Bearer tADicLUUI2k4He69iAlp8jrF-n-4LJrf60S3UJr_uJs",
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ query }),
-            }).then(res => res.json()).then(data => {
-                this.topic = data.data.topicsCollection.items[0];
-            });
+            const res = await fetch(
+                "https://graphql.contentful.com/content/v1/spaces/h7anfqe067rx/",
+                {
+                    method: "POST",
+                    headers: {
+                        Authorization:
+                            "Bearer tADicLUUI2k4He69iAlp8jrF-n-4LJrf60S3UJr_uJs",
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ query }),
+                }
+            )
+                .then((res) => res.json())
+                .then((data) => {
+                    this.topic = data.data.topicsCollection.items[0];
+                });
         };
         return getData();
     },
-    components: { RouterLink }
-}
+    components: { RouterLink },
+};
 </script>
 
 <style>

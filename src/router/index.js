@@ -3,8 +3,10 @@ import DashboardView from "../views/DashboardView.vue";
 import CoursesView from "../views/CoursesView.vue";
 import HistoryView from "../views/HistoryView.vue";
 import CourseTemplate from "../views/CourseView.vue";
-import TopicTemplate from "../views/TopicView.vue"
+import TopicTemplate from "../views/TopicView.vue";
 import TeacherDashboardView from "../views/Teacher/TDashboardView.vue";
+import TeacherReviewActivity from "../views/Teacher/TReviewActivity.vue";
+import SignUpView from "../views/SignUpView.vue";
 
 const routes = [
     {
@@ -36,6 +38,16 @@ const routes = [
         path: "/teacher/",
         name: "teacher",
         component: TeacherDashboardView,
+    },
+    {
+        path: "/teacher/review-activity",
+        name: "review activity",
+        component: TeacherReviewActivity,
+    },
+    {
+        path: "/signup",
+        name: "signup",
+        component: SignUpView,
     },
 ];
 
