@@ -11,15 +11,54 @@
                 <router-link to="/history">History</router-link>
             </ul>
         </div>
-        <div class="flex items-center gap-2">
+        <div class="flex items-center gap-2 relative">
             <div>Hi, Max!</div>
-            <i class="fa-regular fa-circle-user text-2xl"></i>
+            <i
+                class="fa-regular fa-circle-user text-2xl cursor-pointer"
+                @click="toggleDropdown"
+            ></i>
+
+            <div
+                class="
+                    w-32
+                    h-fit
+                    absolute
+                    mt-32
+                    right-0
+                    p-2
+                    px-4
+                    border
+                    shadow
+                    rounded
+                "
+                v-if="dropdownState"
+            >
+                <ul class="font-medium flex flex-col">
+                    <router-link to="/">Student</router-link>
+                    <router-link to="/teacher/">Teacher</router-link>
+                </ul>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
-export default {};
+import { ref } from "vue";
+
+export default {
+    setup() {
+        const dropdownState = ref(false);
+
+        const toggleDropdown = () => {
+            dropdownState.value = !dropdownState.value;
+        };
+
+        return {
+            dropdownState,
+            toggleDropdown,
+        };
+    },
+};
 </script>
 
 <style></style>

@@ -32,10 +32,10 @@
         </div>
         <div class="p-12 pt-0 flex flex-col gap-4" v-for="i in 2" :key="i">
             <h2 class="text-xl font-medium">Continue your Project</h2>
-            <div class="grid grid-cols-3 gap-6">
+            <div class="grid grid-cols-4 gap-6">
                 <div
                     class="border p-4 rounded w-fit flex flex-col gap-1"
-                    v-for="i in 3"
+                    v-for="i in 4"
                     :key="i"
                 >
                     <div class="w-64 h-32 bg-red-400 rounded">img</div>

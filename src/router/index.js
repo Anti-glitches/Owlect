@@ -3,6 +3,7 @@ import DashboardView from "../views/DashboardView.vue";
 import CoursesView from "../views/CoursesView.vue";
 import HistoryView from "../views/HistoryView.vue";
 import CourseTemplate from "../views/CourseView.vue";
+import TeacherDashboardView from "../views/Teacher/TDashboardView.vue";
 
 const routes = [
     {
@@ -29,6 +30,11 @@ const routes = [
         path: "/history",
         name: "history",
         component: HistoryView,
+    },
+    {
+        path: "/teacher/",
+        name: "teacher",
+        component: TeacherDashboardView,
     },
 ];
 
