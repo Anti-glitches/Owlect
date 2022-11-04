@@ -1,16 +1,18 @@
 <template>
     <div>
-        {{topics}}
+        <!-- {{topics}} -->
         <!-- Courses Hero Section -->
         <div class="flex bg-green-100 p-12 gap-10 flex-col items-start">
-            <button>
-                <i class="fa-solid fa-chevron-left"></i>Back to Courses
-            </button>
+            <router-link to="/courses"
+                ><i class="fa-solid fa-chevron-left"></i> Back to
+                Courses</router-link
+            >
+
             <div class="flex gap-12">
                 <div class="flex flex-col gap-5">
-                    <h1 class="text-3xl">{{subject.name}}</h1>
+                    <h1 class="text-3xl">{{ subject.name }}</h1>
                     <p>
-                        {{subject.description}}
+                        {{ subject.description }}
                     </p>
                     <button class="p-5 bg-red-400">Button</button>
                 </div>
@@ -29,7 +31,7 @@
                         h-80
                     "
                 >
-                    <img :src=image class="w-36" />
+                    <img :src="image" class="w-36" />
                     <div class="flex gap-4">
                         <div>
                             <h3>20+</h3>
@@ -49,6 +51,7 @@
             <div
                 class="p-28 py-0 flex flex-col gap-3 relative"
                 v-for="content in contentLevel"
+                :key="content"
             >
                 <span
                     class="
@@ -66,13 +69,17 @@
                     "
                     >{{ content.Level }}</span
                 >
-                <h3 class="text-2xl">{{content.Name}}</h3>
+                <h3 class="text-2xl">{{ content.Name }}</h3>
                 <p>
-                    {{content.Description}}
+                    {{ content.Description }}
                 </p>
                 <!-- Courses Option in one section -->
                 <div class="grid grid-cols-3 gap-4">
-                    <router-link v-for="topic in topics" :to="'/courses/' + subject.nameSlug + '/' + topic.slug" >
+                    <router-link
+                        v-for="topic in topics"
+                        :to="'/courses/' + subject.nameSlug + '/' + topic.slug"
+                        :key="topic"
+                    >
                         <div
                             class="bg-red-500"
                             v-if="topic.contentLevel == content.Level"
@@ -81,9 +88,9 @@
                                 <i class="fa-regular fa-image"></i>
                             </div>
                             <div class="p-5 py-3 bg-yellow-100">
-                                <h4 class="text-lg">{{topic.name}}</h4>
+                                <h4 class="text-lg">{{ topic.name }}</h4>
                                 <p class="text-sm">
-                                    {{topic.shortDescription}}
+                                    {{ topic.shortDescription }}
                                 </p>
                             </div>
                         </div>
@@ -95,16 +102,15 @@
 </template>
 
 <script>
-import { RouterLink } from 'vue-router';
+import { RouterLink } from "vue-router";
 
-
-export default{
+export default {
     data() {
         return {
             image: "",
             subject: [],
             contentLevel: [],
-            topics: []
+            topics: [],
         };
     },
     mounted() {
@@ -132,24 +138,32 @@ export default{
         }
          `;
         const getData = async () => {
-            const res = await fetch("https://graphql.contentful.com/content/v1/spaces/h7anfqe067rx/", {
-                method: "POST",
-                headers: {
-                    Authorization: "Bearer tADicLUUI2k4He69iAlp8jrF-n-4LJrf60S3UJr_uJs",
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ query }),
-            }).then(res => res.json()).then(data => {
-                this.subject = data.data.subjectsCollection.items[0];
-                this.image = data.data.subjectsCollection.items[0].image.url;
-                this.contentLevel = data.data.subjectsCollection.items[0].contents;
-                this.topics = data.data.topicsCollection.items;
-            });
+            const res = await fetch(
+                "https://graphql.contentful.com/content/v1/spaces/h7anfqe067rx/",
+                {
+                    method: "POST",
+                    headers: {
+                        Authorization:
+                            "Bearer tADicLUUI2k4He69iAlp8jrF-n-4LJrf60S3UJr_uJs",
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ query }),
+                }
+            )
+                .then((res) => res.json())
+                .then((data) => {
+                    this.subject = data.data.subjectsCollection.items[0];
+                    this.image =
+                        data.data.subjectsCollection.items[0].image.url;
+                    this.contentLevel =
+                        data.data.subjectsCollection.items[0].contents;
+                    this.topics = data.data.topicsCollection.items;
+                });
         };
         return getData();
     },
-    components: { RouterLink }
-}
+    components: { RouterLink },
+};
 </script>
 
 <style></style>

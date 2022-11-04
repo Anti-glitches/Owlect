@@ -1,11 +1,14 @@
 <template>
     <div class="p-12">
-        
         <div class="flex flex-col gap-2 mb-12">
             <h1 class="text-2xl">Frequently visited courses</h1>
             <p>Courses you’ve visited recently</p>
             <div class="flex gap-6">
-                <router-link v-for="item in items" :to="'/courses/' + item.nameSlug">
+                <router-link
+                    v-for="item in items"
+                    :key="item"
+                    :to="'/courses/' + item.nameSlug"
+                >
                     <div
                         class="
                             border
@@ -21,8 +24,8 @@
                             h-fit
                         "
                     >
-                        <img :src=item.image.url class="w-36" />
-                        <h2>{{item.name}}</h2>
+                        <img :src="item.image.url" class="w-36" />
+                        <h2>{{ item.name }}</h2>
                     </div>
                 </router-link>
             </div>
@@ -31,13 +34,13 @@
 </template>
 
 <script>
-export default{
+export default {
     data() {
         return {
-            items: []
-        }
-    }, 
-    mounted(){
+            items: [],
+        };
+    },
+    mounted() {
         const query = `{
                 subjectsCollection{
                     items {
@@ -50,23 +53,27 @@ export default{
                 }
             }
          `;
-            const getData = async () => {
-                const res = await fetch(
-                    "https://graphql.contentful.com/content/v1/spaces/h7anfqe067rx/",
-                    {
-                        method: "POST",
-                        headers: {
-                            Authorization:
-                                "Bearer tADicLUUI2k4He69iAlp8jrF-n-4LJrf60S3UJr_uJs",
-                            "Content-Type": "application/json",
-                        },
-                        body: JSON.stringify({ query }),
-                    }
-                ).then(res => res.json()).then(data => this.items = data.data.subjectsCollection.items);
-            };
-        return getData()
-    }
-}
+        const getData = async () => {
+            const res = await fetch(
+                "https://graphql.contentful.com/content/v1/spaces/h7anfqe067rx/",
+                {
+                    method: "POST",
+                    headers: {
+                        Authorization:
+                            "Bearer tADicLUUI2k4He69iAlp8jrF-n-4LJrf60S3UJr_uJs",
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ query }),
+                }
+            )
+                .then((res) => res.json())
+                .then(
+                    (data) => (this.items = data.data.subjectsCollection.items)
+                );
+        };
+        return getData();
+    },
+};
 </script>
 
 <style></style>
