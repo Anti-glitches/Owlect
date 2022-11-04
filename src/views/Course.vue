@@ -72,7 +72,7 @@
                 </p>
                 <!-- Courses Option in one section -->
                 <div class="grid grid-cols-3 gap-4">
-                    <template v-for="topic in topics" >
+                    <router-link v-for="topic in topics" :to="'/courses/' + subject.nameSlug + '/' + topic.slug" >
                         <div
                             class="bg-red-500"
                             v-if="topic.contentLevel == content.Level"
@@ -87,7 +87,7 @@
                                 </p>
                             </div>
                         </div>
-                    </template>
+                    </router-link>
                 </div>
             </div>
         </div>
@@ -95,22 +95,25 @@
 </template>
 
 <script>
+import { RouterLink } from 'vue-router';
+
 
 export default{
-        data() {
+    data() {
         return {
-            image:"",
+            image: "",
             subject: [],
             contentLevel: [],
             topics: []
-        }
-    }, 
-    mounted(){
+        };
+    },
+    mounted() {
         console.log(this.$route.params);
         const query = `{
             subjectsCollection(where: {nameSlug: "${this.$route.params.courseName}"}){
 				items {
 						name
+                        nameSlug
                         description
                         image{
                             url
@@ -123,31 +126,29 @@ export default{
 			        name
                     shortDescription
 			        contentLevel
+                    slug
 		        }
 	        }
         }
          `;
-            const getData = async () => {
-                const res = await fetch(
-                    "https://graphql.contentful.com/content/v1/spaces/h7anfqe067rx/",
-                    {
-                        method: "POST",
-                        headers: {
-                            Authorization:
-                                "Bearer tADicLUUI2k4He69iAlp8jrF-n-4LJrf60S3UJr_uJs",
-                            "Content-Type": "application/json",
-                        },
-                        body: JSON.stringify({ query }),
-                    }
-                ).then(res => res.json()).then(data => {
-                    this.subject = data.data.subjectsCollection.items[0];
-                    this.image = data.data.subjectsCollection.items[0].image.url
-                    this.contentLevel = data.data.subjectsCollection.items[0].contents
-                    this.topics = data.data.topicsCollection.items
-                })
-            };
-        return getData()
+        const getData = async () => {
+            const res = await fetch("https://graphql.contentful.com/content/v1/spaces/h7anfqe067rx/", {
+                method: "POST",
+                headers: {
+                    Authorization: "Bearer tADicLUUI2k4He69iAlp8jrF-n-4LJrf60S3UJr_uJs",
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ query }),
+            }).then(res => res.json()).then(data => {
+                this.subject = data.data.subjectsCollection.items[0];
+                this.image = data.data.subjectsCollection.items[0].image.url;
+                this.contentLevel = data.data.subjectsCollection.items[0].contents;
+                this.topics = data.data.topicsCollection.items;
+            });
+        };
+        return getData();
     },
+    components: { RouterLink }
 }
 </script>
 
