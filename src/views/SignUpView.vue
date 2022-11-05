@@ -13,7 +13,7 @@
                     gap-4
                     items-center
                     justify-center
-                    pb-12
+                    pb-8
                     border-b-2
                 "
             >
@@ -44,6 +44,15 @@
                 >
                     Sign Up
                 </button>
+            </div>
+            <div class="text-center pt-8">
+                <p>Or sign up with</p>
+                <p>
+                    I already have an account.
+                    <router-link to="/" class="text-red-400 font-medium"
+                        >Login</router-link
+                    >
+                </p>
             </div>
         </div>
     </div>

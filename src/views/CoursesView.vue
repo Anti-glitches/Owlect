@@ -16,16 +16,16 @@
                             rounded
                             flex flex-col
                             gap-3
-                            justify-center
                             items-center
+                            justify-between
                             flex-shrink-0
-                            p-8
+                            p-10
                             w-fit
-                            h-fit
+                            h-72
                         "
                     >
                         <img :src="item.image.url" class="w-36" />
-                        <h2>{{ item.name }}</h2>
+                        <h2 class="font-semibold">{{ item.name }}</h2>
                     </div>
                 </router-link>
             </div>

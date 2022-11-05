@@ -2,44 +2,48 @@
     <div>
         <!-- {{topics}} -->
         <!-- Courses Hero Section -->
-        <div class="flex bg-green-100 p-12 gap-10 flex-col items-start">
+        <div class="flex bg-slate-100 p-12 px-36 gap-10 flex-col items-start">
             <button @click="$router.go(-1)">
-                <i class="fa-solid fa-chevron-left"></i> 
+                <i class="fa-solid fa-chevron-left"></i>
                 Back to Courses
             </button>
 
             <div class="flex gap-12">
                 <div class="flex flex-col gap-5">
-                    <h1 class="text-3xl">{{ subject.name }}</h1>
+                    <h1 class="text-3xl mb-6">{{ subject.name }}</h1>
                     <p>
                         {{ subject.description }}
                     </p>
-                    <button class="p-5 bg-red-400">Button</button>
+                    <!-- <button class="p-5 bg-red-400">Button</button> -->
                 </div>
                 <div
                     class="
                         border
-                        bg-blue-200
+                        bg-slate-50
                         flex flex-col
+                        rounded-lg
                         gap-3
                         justify-center
-                        items-center
                         flex-shrink-0
-                        border-black
                         p-8
+                        px-10
                         w-80
                         h-80
                     "
                 >
-                    <img :src="image" class="w-36" />
-                    <div class="flex gap-4">
+                    <img :src="image" class="w-36 self-center" />
+                    <div class="flex gap-4 justify-between">
                         <div>
-                            <h3>{{subject.registered}}</h3>
-                            <p>Registered</p>
+                            <h3 class="text-xl font-bold">
+                                {{ subject.registered }}
+                            </h3>
+                            <p class="text-sm text-gray-600">Registered</p>
                         </div>
                         <div>
-                            <h3>20+</h3>
-                            <p>Available Tutors</p>
+                            <h3 class="text-xl font-bold">20+</h3>
+                            <p class="text-sm text-gray-600">
+                                Available Tutors
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -75,20 +79,30 @@
                 </p>
                 <!-- Courses Option in one section -->
                 <div class="grid grid-cols-3 gap-4">
-                    <template v-for="topic in topics">
+                    <template v-for="(topic, i) in topics">
                         <router-link
+                            :key="i"
                             v-if="topic.contentLevel == content.Level"
-                            :to="'/courses/' + subject.nameSlug + '/' + topic.slug"
+                            :to="
+                                '/courses/' +
+                                subject.nameSlug +
+                                '/' +
+                                topic.slug
+                            "
                         >
-                            <div
-                                class="bg-red-500"
-                                
-                            >
-                                <div class="h-36 flex justify-center items-center">
-                                    <img :src="topic.thumbnail.url" class="w-36" />
+                            <div class="rounded shadow">
+                                <div
+                                    class="flex justify-center items-center p-4"
+                                >
+                                    <img
+                                        :src="topic.thumbnail.url"
+                                        class="rounded"
+                                    />
                                 </div>
-                                <div class="p-5 py-3 bg-yellow-100">
-                                    <h4 class="text-lg">{{ topic.name }}</h4>
+                                <div class="p-5 py-3 bg-slate-50 rounded">
+                                    <h4 class="text-lg font-semibold mb-1">
+                                        {{ topic.name }}
+                                    </h4>
                                     <p class="text-sm">
                                         {{ topic.shortDescription }}
                                     </p>
